@@ -13,11 +13,11 @@ def get_user_input():
     return users_guess.lstrip().lower()
 
 
-def get_displayed_text():
+def get_guess_progress_text():
     """
-    Creates a string replacing all letters with underscores except letters
-    that have been guessed correctly. This is used to indicated the users
-    progress.
+    Returns a string created from the secret word replacing all letters with
+    underscores except letters that have been guessed correctly. This is
+    used to indicated the users progress.
     """
     return ''.join([l if l in correct_guesses else '_' for l in WORD_TO_GUESS])
 
@@ -25,7 +25,7 @@ def get_displayed_text():
 if __name__ == '__main__':
 
     # initialize text to be shown
-    displayed_text = ' '.join(l for l in get_displayed_text())
+    displayed_text = ' '.join(l for l in get_guess_progress_text())
     # print game welcome message
     print('\nWelcome to another game of hangman!\n')
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
                 has_guessed_word = True
             elif users_guess in WORD_TO_GUESS and len(users_guess) == 1:
                 correct_guesses.append(users_guess)
-                displayed_text = get_displayed_text()
+                displayed_text = get_guess_progress_text()
                 users_guess = None
                 if displayed_text == WORD_TO_GUESS:
                     has_guessed_word = True
